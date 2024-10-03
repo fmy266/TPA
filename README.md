@@ -8,6 +8,8 @@ This repository contains the source codes of TPA (Theoretically Provable Attack)
 
 2) **./toolkit** contains the source codes of FAA and **./FAA** is main evaluation scripts. Reproducing experiments see STEP2 (produce adversarial examples) and STEP3 (evaluate transferability).
 
+3) Regarding the dataset, you can refer to [this link](https://github.com/cleverhans-lab/cleverhans/tree/master/cleverhans_v3.1.0/examples/nips17_adversarial_competition/dataset). Alternatively, you can extract some images from ImageNet.
+
 ## 2. Produce Adversarial Examples
 
 Produce adversarial examples with our method and save the examples into "./our_advs". **save_dir** denotes the store path of produced adversarial examples.
