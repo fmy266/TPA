@@ -1,6 +1,6 @@
 # Transferability Bound Theory: Exploring Relationship between Adversarial Transferability and Flatness (NeurIPS 2024)
 
-This repository contains the source codes of TPA, accepted as poster at NeurIPS 2024. [Click here to access the preprint](https://arxiv.org/abs/2311.06423).
+This repository contains the source codes of TPA (Theoretically Provable Attack), accepted as a poster at NeurIPS 2024. TPA optimizes a surrogate of the derived bound craft adversarial examples. The crafted adversarial examples can transfer across state-of-the-art normal and defense models. [Click here to access the preprint for more information of TPA](https://arxiv.org/abs/2311.06423).
 
 ## 1. Preliminary
 
