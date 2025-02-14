@@ -35,13 +35,10 @@ Evaluate the attack performance of the examples against various models. Some tar
 If you find this repository helpful, please cite as:
 
 ```
-@misc{fan2024transferabilityboundtheoryexploring,
+@inproceedings{fan2025bad,
       title={Transferability Bound Theory: Exploring Relationship between Adversarial Transferability and Flatness}, 
       author={Mingyuan Fan and Xiaodan Li and Cen Chen and Wenmeng Zhou and Yaliang Li},
-      year={2024},
-      eprint={2311.06423},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2311.06423}, 
+  booktitle    = {Proc. of NeurIPS},
+  year         = {2024},
 }
 ```
