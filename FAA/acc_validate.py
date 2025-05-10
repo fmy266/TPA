@@ -106,7 +106,7 @@ if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     parser = argparse.ArgumentParser()
     parser.add_argument("--adv_dir", type=str, default="our_advs")
-    parser.add_argument("--device", type=int, default=5)
+    parser.add_argument("--device", type=int, default=0)
     parser.add_argument("--target", type=bool, default=False)
     args = parser.parse_args()
     device = torch.device("cuda:{}".format(args.device))
@@ -117,19 +117,19 @@ if __name__ == "__main__":
         "densenet121": torchvision.models.densenet121(pretrained=True).to(device).eval(),
         "mobilenet": torchvision.models.mobilenet_v3_small(pretrained=True).to(device).eval(),
         "efficientnet": torchvision.models.efficientnet_b0(pretrained=True).to(device).eval(),
-        "vgg19": torchvision.models.vgg19_bn(pretrained=True).to(device).eval(),
-        "inception": torchvision.models.inception_v3(pretrained=True).to(device).eval(),
-        "regnet": torchvision.models.regnet_x_16gf(pretrained=True).to(device).eval(),
-        "wideresnet50": torchvision.models.wide_resnet50_2(pretrained=True).to(device).eval(),
-        "swin_t": torchvision.models.swin_t(weights=weights).to(device).eval(),
-        "squeezenet": torchvision.models.squeezenet1_1(pretrained=True).to(device).eval(),
-        "mnasnet": torchvision.models.mnasnet1_0(pretrained=True).to(device).eval(),
-        "vit": torchvision.models.vit_b_16(pretrained=True).to(device).eval(),
-        "convnext": torchvision.models.convnext_tiny(pretrained=True).to(device).eval(),
-        "shufflenet": torchvision.models.shufflenet_v2_x1_0(pretrained=True).to(device).eval(),
+        # "vgg19": torchvision.models.vgg19_bn(pretrained=True).to(device).eval(),
+        # "inception": torchvision.models.inception_v3(pretrained=True).to(device).eval(),
+        # "regnet": torchvision.models.regnet_x_16gf(pretrained=True).to(device).eval(),
+        # "wideresnet50": torchvision.models.wide_resnet50_2(pretrained=True).to(device).eval(),
+        # "swin_t": torchvision.models.swin_t(weights=weights).to(device).eval(),
+        # "squeezenet": torchvision.models.squeezenet1_1(pretrained=True).to(device).eval(),
+        # "mnasnet": torchvision.models.mnasnet1_0(pretrained=True).to(device).eval(),
+        # "vit": torchvision.models.vit_b_16(pretrained=True).to(device).eval(),
+        # "convnext": torchvision.models.convnext_tiny(pretrained=True).to(device).eval(),
+        # "shufflenet": torchvision.models.shufflenet_v2_x1_0(pretrained=True).to(device).eval(),
     }
 
-    adv_loader = torch.utils.data.DataLoader(AdvDataset(f"./{args.adv_dir}", transform=train_transform), batch_size=16, Shuffle=False)
+    adv_loader = torch.utils.data.DataLoader(AdvDataset(f"./{args.adv_dir}", transform=train_transform), batch_size=16)
     clean_loader = torch.utils.data.DataLoader(SubsetImageNet(transform=train_transform, targeted=False), batch_size=16)
 
 

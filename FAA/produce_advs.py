@@ -3,11 +3,11 @@ import torch.nn as nn
 from torch.utils.data import Dataset
 from PIL import Image
 from torchvision.transforms.functional import to_pil_image
+from tqdm import tqdm
 # from robustness import datasets, defaults, model_utils, train
 # from robustness.tools import helpers
 from densenet import *
 from resnet import *
-from vgg import *
 sys.path.append("..")
 from toolkit.adv import attack
 
@@ -57,11 +57,11 @@ def load_ground_truth(csv_filename):
 
 
 class SubsetImageNet(Dataset):
-    def __init__(self, root="./target_data/images", transform=None, targeted=False):
+    def __init__(self, root="../dataset/images", transform=None, targeted=False):
         super(SubsetImageNet, self).__init__()
         self.root = root
         self.transform = transform
-        image_id_list, label_ori_list, label_tar_list = load_ground_truth('./target_data/images.csv')
+        image_id_list, label_ori_list, label_tar_list = load_ground_truth('../dataset/images.csv')
         img_path = [img+".png" for img in image_id_list]
         self.img_path = [item for item in img_path if 'png' in item]
         if targeted:
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     epsilon = 0.27 / 16 * args.budget # approxi 4 6 8 10 12 14 16/255
 
     dataset = SubsetImageNet(transform=train_transform, targeted=False)
-    mini_imagenet = torch.utils.data.DataLoader(dataset, batch_size=16)
+    mini_imagenet = torch.utils.data.DataLoader(dataset, batch_size=64)
 
     proxy_model_zoo = {
         "resnet50": torchvision.models.resnet50(pretrained=True).to(device).eval(),
@@ -123,7 +123,7 @@ if __name__ == "__main__":
         # "densenet201": torchvision.models.densenet201(pretrained=True).to(device).eval(),
     }
 
-    eval_attack = attack.TAEFEP(epsilon=epsilon, step_size=epsilon / 10, device=device, iter_num=20,
+    eval_attack = attack.TAEFEP(epsilon=epsilon, step_size=epsilon / 10, device=device, iter_num=10,
                                   alpha=args.alpha, noise_magn=args.noise, forward_step_size=args.step,
                                   copies=args.copies)
 
@@ -133,7 +133,7 @@ if __name__ == "__main__":
     proxy_model = load_model(args.proxy, args.device)
 
     save_idx = 0
-    for data, label in mini_imagenet:
+    for data, label in tqdm(mini_imagenet):
 
         data, label = data.to(device), label.to(device)
 
