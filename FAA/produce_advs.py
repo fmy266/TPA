@@ -100,7 +100,7 @@ def unnormal_func(image):
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     parser = argparse.ArgumentParser()
-    parser.add_argument("--device", type=int, default=7)
+    parser.add_argument("--device", type=int, default=0)
     parser.add_argument("--alpha", type=float, default=0.8)
     parser.add_argument("--step", type=float, default=0.05)
     parser.add_argument("--noise", type=float, default=16.)
