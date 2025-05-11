@@ -1,5 +1,28 @@
 # Transferability Bound Theory: Exploring Relationship between Adversarial Transferability and Flatness (NeurIPS 2024)
 
+**Update (2025-05-11)**: Recently, some have reported that the code in this repository achieves only 60-70% ASR on their servers, while some individuals successfully reproduce the results. I can currently only attribute this discrepancy to environmental differences, as this issue has exceeded my capabilities (you can see the Issues for more details). Below, I've detailed my experimental environment, which may help with reproducibility. I wish that someone could figure out what causes these variations.
+
+Some observations that might be helpful:
+- The code ran successfully on the company servers last year
+- The code also works well on my lab servers
+- System versions and GPU hardware are unlikely to be the root cause
+- Please prioritize aligning the remaining environment components, including CUDA version
+
+For researchers using TPA as a baseline but unable to fully reproduce results due to unknown factors:
+1. Find collaborators who can successfully reproduce the results
+2. Use my pre-generated adversarial examples (ResNet50, 10 iterations, perturbation budget $\epsilon$=16/255)
+
+Reproduction Environment:
+- Python: 3.11.5
+- Dependencies: requirements.txt
+- GPU: NVIDIA 4090
+- CUDA: 12.2
+- OS: CentOS 7
+
+Please note that minor version differences in dependencies might still affect reproducibility. If you discover any specific environmental factors affecting the results, please leave a message in our issue.
+
+---
+
 This repository contains the source codes of TPA (Theoretically Provable Attack), accepted as a poster at NeurIPS 2024. TPA optimizes a surrogate of the derived bound craft adversarial examples. The crafted adversarial examples can transfer across state-of-the-art normal and defense models. [Click here to access the preprint for more information of TPA](https://arxiv.org/abs/2311.06423).
 
 ## 1. Preliminary
